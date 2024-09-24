@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  backend:
+    build: ./
+    container_name: backend
+    command: gunicorn --bind 0.0.0.0:8000 youtube_data_processing.wsgi:application
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - DEBUG=True
+    depends_on:
+      - db
+
+  frontend:
+    build: ./react_frontend
+    container_name: frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  db:
+    image: postgres:13
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+
+volumes:
+  postgres_data:
