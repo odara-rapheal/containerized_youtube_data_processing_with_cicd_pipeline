@@ -24,8 +24,7 @@ This project containerizes (with CI/CD pipeline) a web application that combines
 
 Before you begin, ensure you have met the following requirements:
 
-Google Cloud Provider Account
-
+- Google Cloud Provider Account
 - Django
 - Docker
 - Python 3.8+
