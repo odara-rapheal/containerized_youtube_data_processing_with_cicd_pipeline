@@ -24,13 +24,13 @@ jobs:
       - name: Build and push backend Docker image
         run: >
           docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/backend:latest
-          /
+          ./
 
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/backend:latest
       - name: Build and push frontend Docker image
         run: >
           docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/frontend:latest
-          /react_frontend
+          ./react_frontend
 
           docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/frontend:latest
       - name: Deploy backend to Cloud Run
